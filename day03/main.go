@@ -8,10 +8,6 @@ import (
 	"strconv"
 )
 
-type Location struct {
-	Row, Col int
-}
-
 func isNumberAdjacent(lineAbove, currentLine, lineBelow string, symbolCol int) []int {
 	var adjacentNumbers []int
 	checkLine := func(line string, rowOffset int) {
