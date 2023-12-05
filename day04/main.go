@@ -3,22 +3,22 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"github.com/alecthomas/participle/v2"
+	"github.com/deckarep/golang-set"
 	"os"
 	"strings"
-    "github.com/alecthomas/participle/v2"
-    "github.com/deckarep/golang-set"
 )
 
 type Scratchcard struct {
-    WinningNumbers  []interface{}   `parser:"@Int+"`
-    ElfNumbers      []interface{}   `parser:"'|' @Int+"`
-    WinCount        int
+	WinningNumbers []interface{} `parser:"@Int+"`
+	ElfNumbers     []interface{} `parser:"'|' @Int+"`
+	WinCount       int
 }
 
 func (s *Scratchcard) checkNumberOfWins() {
-    winningSet := mapset.NewSetFromSlice(s.WinningNumbers)
-    elfSet := mapset.NewSetFromSlice(s.ElfNumbers)
-    s.WinCount = winningSet.Intersect(elfSet).Cardinality()
+	winningSet := mapset.NewSetFromSlice(s.WinningNumbers)
+	elfSet := mapset.NewSetFromSlice(s.ElfNumbers)
+	s.WinCount = winningSet.Intersect(elfSet).Cardinality()
 }
 
 func main() {
@@ -48,5 +48,5 @@ func main() {
 			}
 		}
 	}
-    fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
+	fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
 }

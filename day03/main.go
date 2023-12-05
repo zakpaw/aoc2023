@@ -34,7 +34,7 @@ func processLine(lineAbove, currentLine, lineBelow string, rowNum int) (allNumbe
 			adjacentNumbers := isNumberAdjacent(lineAbove, currentLine, lineBelow, col)
 			allNumbers = append(allNumbers, adjacentNumbers...)
 			if char == '*' && len(adjacentNumbers) == 2 {
-				gearNumbers = append(gearNumbers, adjacentNumbers[0] * adjacentNumbers[1])
+				gearNumbers = append(gearNumbers, adjacentNumbers[0]*adjacentNumbers[1])
 			}
 		}
 	}
@@ -57,5 +57,5 @@ func main() {
 		lineAbove, currentLine = currentLine, lineBelow
 		row++
 	}
-    fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
+	fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
 }
