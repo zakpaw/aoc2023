@@ -60,26 +60,28 @@ func main() {
 
 	converters := parseConvertersStream(scanner)
 
-    resultP1, resultP2 := math.MaxInt, math.MaxInt
-    for i, seedStr := range seeds {
-        seedVal, _ := strconv.Atoi(seedStr)
-        for _, converter := range converters {
-            seedVal = converter.getCorespondingValue(seedVal)
-        }
-        if seedVal < resultP1 { resultP1 = seedVal }
-        if i%2 == 1 {
-            seedVal, _ = strconv.Atoi(seedStr)
-            prevSeedVal, _ := strconv.Atoi(seeds[i-1])
-            for j := prevSeedVal; j <= prevSeedVal + seedVal; j++ {
-                convertedJ := j
-                for _, converter := range converters {
-                    convertedJ = converter.getCorespondingValue(convertedJ)
-                }
-                if convertedJ < resultP2 {
-                    resultP2 = convertedJ
-                }
-            }
-        }
-    }
-    fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
+	resultP1, resultP2 := math.MaxInt, math.MaxInt
+	for i, seedStr := range seeds {
+		seedVal, _ := strconv.Atoi(seedStr)
+		for _, converter := range converters {
+			seedVal = converter.getCorespondingValue(seedVal)
+		}
+		if seedVal < resultP1 {
+			resultP1 = seedVal
+		}
+		if i%2 == 1 {
+			seedVal, _ = strconv.Atoi(seedStr)
+			prevSeedVal, _ := strconv.Atoi(seeds[i-1])
+			for j := prevSeedVal; j <= prevSeedVal+seedVal; j++ {
+				convertedJ := j
+				for _, converter := range converters {
+					convertedJ = converter.getCorespondingValue(convertedJ)
+				}
+				if convertedJ < resultP2 {
+					resultP2 = convertedJ
+				}
+			}
+		}
+	}
+	fmt.Printf("part1: %d\npart2: %d\n", resultP1, resultP2)
 }
